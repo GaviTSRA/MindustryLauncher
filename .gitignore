@@ -1,0 +1,7 @@
+imgui.ini
+__pycache__
+*.cmd
+main.dist
+backups
+main.build
+settings.properties
