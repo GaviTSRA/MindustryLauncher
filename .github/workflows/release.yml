@@ -7,10 +7,12 @@ on:
 jobs:
   build:
     strategy:
+      fail-fast: false
       matrix:
         os: [macos-latest, ubuntu-latest, windows-latest]
       
     runs-on: ${{ matrix.os }}  
+    continue-on-error: true
 
     steps:
       - name: Checkout Commit
