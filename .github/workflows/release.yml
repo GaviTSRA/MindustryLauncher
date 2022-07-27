@@ -1,3 +1,9 @@
+name: Release Update
+
+on:
+  push:
+    tags: v*
+
 jobs:
   build:
     strategy:
