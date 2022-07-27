@@ -25,6 +25,6 @@ exe = EXE(pyz,
           debug=True,
           strip=None,
           upx=True,
-          console=False,
+          console=True,
           #icon=os.path.join(gooey_root, 'images', 'program_icon.ico')
 )
