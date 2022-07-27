@@ -3,3 +3,4 @@ imgui[glfw]
 easygui
 psutil
 Gooey
+glfw
