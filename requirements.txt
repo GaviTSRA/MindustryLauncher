@@ -1,4 +1,4 @@
 requests
-imgui
 psutil
 Gooey
+easygui
