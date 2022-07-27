@@ -32,7 +32,6 @@ jobs:
       - name: Build Executable
         uses: jimkring/python-script-to-exe@v0.2.0
         with:
-          include-plugin-files: "*_PLUGIN.py"
           script-name: main.py
           onefile: true
   
