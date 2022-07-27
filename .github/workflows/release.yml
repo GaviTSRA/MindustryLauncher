@@ -1,20 +1,14 @@
-name: Release Update
-
-on:
-  push:
-    tags: v*
-
 jobs:
   build:
-    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        os: [macos-latest, ubuntu-latest, windows-latest]
+      
+    runs-on: ${{ matrix.os }}
+    
     steps:
-      - name: Cancel Previous Workflows
-        uses: styfle/cancel-workflow-action@0.6.0
-        with:
-          access_token: ${{ secrets.GITHUB_TOKEN }}
-
-      - name: Checkout Commit
-        uses: actions/checkout@v2
+      - name: Check-out repository
+        uses: actions/checkout@v3
 
       - name: Load version and changelog
         run: |
@@ -23,33 +17,30 @@ jobs:
           awk -v RS='#' 'NR==3{printf"#### "; print; printf"\n"; exit}' changelog >> $GITHUB_ENV
           echo EOF >> $GITHUB_ENV
 
-      - name: Build (Windows)
-        uses: JackMcKew/pyinstaller-action-windows@v0.1.2
+      - name: Setup Python
+        uses: actions/setup-python@v4
         with:
-          path: .
-
-
-      - name: Create Release
-        id: create_release
-        uses: actions/create-release@v1
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          python-version: '3.10' # Version range or exact version of a Python version to use, using SemVer's version range syntax
+          architecture: 'x64' # optional x64 or x86. Defaults to x64 if not specified
+          cache: 'pip'
+          cache-dependency-path: |
+            **/requirements*.txt
+            
+      - name: Install Dependencies
+        run: |
+          pip install -r requirements.txt -r requirements-dev.txt
+          
+      - Name: Build Executable
+        uses: jimkring/python-script-to-exe@v0.2.0
         with:
-          tag_name: ${{ github.ref }}
-          release_name: Release ${{ env.VERSION }}
-          body: | 
-            # Mindustry Launcher (${{ env.VERSION }})
-            ## Latest Changelog (May be out of date)
-            ${{ env.CHANGELOG }}
-          draft: false
-          prerelease: false
-
-      - name: Upload Release Asset
-        uses: actions/upload-release-asset@v1
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          script-name: main
+          onefile: true
+  
+      - name: Upload Artifacts
+        uses: actions/upload-artifact@v3
         with:
-          upload_url: ${{ steps.create_release.outputs.upload_url }}
-          asset_path: dist/windows/main.exe
-          asset_name: MindustryLauncher.exe
-          asset_content_type: application/vnd.microsoft.portable-executable
+          name: ${{ runner.os }} Build
+          path: |
+            build/*.exe
+            build/*.bin
+            build/*.app/**/*
