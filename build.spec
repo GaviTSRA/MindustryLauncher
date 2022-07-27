@@ -22,7 +22,7 @@ exe = EXE(pyz,
           gooey_languages, # Add them in to collected files
           gooey_images, # Same here.
           name='main',
-          debug=False,
+          debug=True,
           strip=None,
           upx=True,
           console=False,
