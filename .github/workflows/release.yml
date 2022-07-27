@@ -16,13 +16,6 @@ jobs:
       - name: Check-out repository
         uses: actions/checkout@v3
 
-      - name: Load version and changelog
-        run: |
-          echo "VERSION=${GITHUB_REF/refs\/tags\//}" >> $GITHUB_ENV # The name of the tag which triggered the build
-          echo "CHANGELOG<<EOF" >> $GITHUB_ENV # These 3 lines are very confusing but github is weird so they are needed, gets the last entry into the changelog.
-          awk -v RS='#' 'NR==3{printf"#### "; print; printf"\n"; exit}' changelog >> $GITHUB_ENV
-          echo EOF >> $GITHUB_ENV
-
       - name: Setup Python
         uses: actions/setup-python@v4
         with:
