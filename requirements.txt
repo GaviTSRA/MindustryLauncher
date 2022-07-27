@@ -2,3 +2,4 @@ requests
 imgui[glfw]
 easygui
 psutil
+Gooey
