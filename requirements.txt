@@ -1,6 +1,6 @@
+wxpython @ https://extras.wxpython.org/wxPython4/extras/linux
 requests
 imgui[glfw]
 easygui
 psutil
 Gooey
-glfw
