@@ -50,6 +50,9 @@ jobs:
     needs: build
 
     steps:
+      - name: Checkout Commit
+        uses: actions/checkout@v2
+
       - name: Load version and changelog
         run: |
           echo "VERSION=${GITHUB_REF/refs\/tags\//}" >> $GITHUB_ENV # The name of the tag which triggered the build
