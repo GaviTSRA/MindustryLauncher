@@ -1,7 +1,5 @@
-wxPython==4.1.0
 requests
 imgui[glfw]
 easygui
 psutil
 Gooey
---extra-index-url https://extras.wxpython.org/wxPython4/extras/linux
