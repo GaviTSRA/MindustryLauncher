@@ -1,2 +1,4 @@
 requests
 psutil
+imgui[glfw]
+easygui
