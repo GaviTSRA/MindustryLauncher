@@ -1,4 +1,4 @@
-wxpython
+wxPython==4.1.0
 requests
 imgui[glfw]
 easygui
