@@ -1,5 +1,4 @@
 requests
-imgui[glfw]
-easygui
+imgui
 psutil
 Gooey
