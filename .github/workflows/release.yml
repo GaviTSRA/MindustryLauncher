@@ -48,6 +48,7 @@ jobs:
   release:
     runs-on: ubuntu-latest
     needs: build
+    continue-on-error: true
 
     steps:
       - name: Checkout Commit
@@ -63,12 +64,12 @@ jobs:
       - uses: actions/download-artifact@v3
         with:
           name: Windows Build
-          path: builds/windows-build
+          path: windows-build
 
       - uses: actions/download-artifact@v3
         with:
           name: Linux Build
-          path: builds/linux-build
+          path: .
 
       - name: Create Release
         id: create_release
@@ -91,7 +92,7 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
           upload_url: ${{ steps.create_release.outputs.upload_url }}
-          asset_path: builds/windows-build
+          asset_path: windows-build
           asset_name: MindustryLauncher Windows
           asset_content_type: application/zip
 
@@ -101,6 +102,6 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
           upload_url: ${{ steps.create_release.outputs.upload_url }}
-          asset_path: builds/linux-build
+          asset_path: linux-build
           asset_name: MindustryLauncher Linux
           asset_content_type: application/zip

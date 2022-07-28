@@ -74,7 +74,7 @@ class Installer:
                     self.load_installer()
                 self.logger.debug("Internet: " + self.internet)
         else:
-            imgui.text(f"Enter github access token.\nThis will grant you access to private installation sources.\nIf you don't need this, enter something random.\nThe token can be changed while the launcher is closed\nin {self.ROOT}/settings.properties") # TODO path is wrong
+            imgui.text(f"Enter github access token.\nThis will grant you access to private installation sources.\nIf you don't need this, enter something random.\nThe token can be changed while the launcher is closed\nin {self.parent.ROOT}/settings.properties") # TODO path is wrong
             changed, self.token = imgui.input_text("Token", self.token, 255)
             if changed: 
                 self.load_installer()
