@@ -9,6 +9,7 @@ from components.util import LogLevel, Logger
 
 from settings import Settings
 
+#TODO logging
 class DataManager:
     logger = Logger("DataManager", LogLevel.DEBUG, "latest.log")
 

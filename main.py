@@ -4,6 +4,7 @@ import imgui
 import OpenGL.GL as gl
 import easygui
 from imgui.integrations.glfw import GlfwRenderer
+from components.util import LogLevel, Logger
 from settings import Settings
 import time
 
@@ -11,6 +12,9 @@ from components.launcher import Launcher
 from components.installer import Installer
 from components.data_manager import DataManager
 class GUI(object):
+    logger = Logger("Main", LogLevel.DEBUG, "latest.log")
+    logger.info("Initializing Phase 1")
+
     settings = Settings("settings.properties")
     with open("latest.log", "w") as fi:
         fi.write("")
@@ -23,6 +27,7 @@ class GUI(object):
         os.mkdir(ROOT + "/profiles")
 
     def __init__(self) -> None:
+        self.logger.info("Initializing Phase 2")
         super().__init__()
         self.backgroundColor = (0, 0, 0, .5)
 
@@ -32,6 +37,8 @@ class GUI(object):
         self.launcher = Launcher(self)
         self.installer = Installer(self)
         self.data_manager = DataManager(self)
+
+        self.logger.info("Done, opening window")
 
         while not self.is_closed:
             if self.is_open:
@@ -94,6 +101,7 @@ class GUI(object):
         glfw.terminate()
 
     def save_settings(self):
+        self.logger.info("Saving settings")
         self.launcher.save_settings()
         self.installer.save_settings()
         self.data_manager.save_settings()

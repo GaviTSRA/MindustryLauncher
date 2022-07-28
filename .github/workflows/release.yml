@@ -103,5 +103,5 @@ jobs:
         with:
           upload_url: ${{ steps.create_release.outputs.upload_url }}
           asset_path: main.bin
-          asset_name: MindustryLauncher Linux.zip
+          asset_name: MindustryLauncher Linux.bin
           asset_content_type: application/zip
