@@ -129,8 +129,12 @@ class Installer:
     def save_file(self, url, path, file_size, token):
         self.logger.info(f"Saving {url} to {path}")
         try:
+            if token != "None":
+                headers = {"Authorization": "token " + token, "Accept": "application/octet-stream"}
+            else:
+                headers = {}
             downloaded = 0
-            data = requests.get(url, headers={"Authorization": "token " + token, "Accept": "application/octet-stream"}, stream=True)
+            data = requests.get(url, headers=headers, stream=True)
             with open(path, "wb") as fi:
                 for chunk in data.iter_content(chunk_size=1024): 
                     if chunk: # filter out keep-alive new chunks
