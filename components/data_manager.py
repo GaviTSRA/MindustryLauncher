@@ -97,7 +97,7 @@ class DataManager:
                     if not dir.endsWith("/"): dir += "/"
                     dir = dir + "Mindustry/"
                 else:
-                    dir = os.expanduser("~") + "/.local/share/Mindustry/";
+                    dir = os.path.expanduser("~") + "/.local/share/Mindustry/"
             elif platform == "win32":
                 self.logger.debug("Detected windows")
                 dir = os.getenv("AppData") + "/Mindustry"
