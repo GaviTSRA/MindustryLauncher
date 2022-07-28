@@ -131,7 +131,7 @@ if __name__ == "__main__":
 [x] Automatically refresh on source change
 [ ] Test on windows
 [ ] Test on linux
-[ ] Start without console
+[x] Start without console
 [x] Close launcher on game launch setting
 [x] Game running warning
 

@@ -132,7 +132,7 @@ class Installer:
             if token != "None":
                 headers = {"Authorization": "token " + token, "Accept": "application/octet-stream"}
             else:
-                headers = {}
+                headers = {"Accept": "application/octet-stream"}
             downloaded = 0
             data = requests.get(url, headers=headers, stream=True)
             with open(path, "wb") as fi:
