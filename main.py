@@ -139,12 +139,7 @@ Later
 
 """
 TODO Windows exe
-- Installer error line 9 (TypeError: string indices must be integers)
 
 TODO Linux exe
 - Make executable
-- Default path
-- Installer error (see windows)
-- Use easygui for deletion dialogues
-
 """

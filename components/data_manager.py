@@ -1,22 +1,28 @@
+from sys import platform
 import imgui
 import easygui
 import shutil
 import os
 import zipfile
 import time
+from components.util import LogLevel, Logger
 
 from settings import Settings
 
 class DataManager:
+    logger = Logger("DataManager", LogLevel.DEBUG, "latest.log")
+
     settings = Settings("settings.properties")
     data_saves = settings.get("data_saves", ["Default"])
     current_data_save = settings.get("data_save", 0)
 
     backup_folders = {"files": False}
     chosen_backup = 0
+    save_dir = ""
 
     def __init__(self, parent) -> None:
         self.parent = parent
+        self.save_dir = self.get_save_dir()
 
     def render(self):
         imgui.begin("Data manager")
@@ -32,11 +38,14 @@ class DataManager:
                         shutil.rmtree(self.data_saves[self.current_data_save])
                     self.data_saves.remove(self.data_saves[self.current_data_save])
                     self.current_data_save = 0
-        _, self.current_data_save = imgui.combo("Current data folder", self.current_data_save, self.data_saves)
+                    self.save_dir = self.get_save_dir()
+        c, self.current_data_save = imgui.combo("Current data folder", self.current_data_save, self.data_saves)
+        if c:
+            self.save_dir = self.get_save_dir()
         imgui.text("Data backups")
         show, _ = imgui.collapsing_header("Create a backup")
         if show:
-            dir = self.get_save_dir()
+            dir = self.save_dir
             for folder in os.listdir(dir):
                 if os.path.isdir(f"{dir}\\{folder}"):
                     if not folder in self.backup_folders.keys():
@@ -77,9 +86,22 @@ class DataManager:
             zip_file.write(path+"/"+file, path[len_dir_path:]+"/"+file)
 
     def get_save_dir(self):
+        self.logger.info("Getting save dir")
         dir = self.data_saves[self.current_data_save]
         if dir == "Default":
-            dir = "C:\\Users\\gavin\\AppData\\Roaming\\Mindustry" #TODO Manage default
+            self.logger.debug("Getting default dir")
+            if platform == "linux" or platform == "linux2":
+                self.logger.debug("Detected linux")
+                if os.getenv("XDG_DATA_HOME") != None:
+                    dir = os.getenv("XDG_DATA_HOME")
+                    if not dir.endsWith("/"): dir += "/"
+                    dir = dir + "Mindustry/"
+                else:
+                    dir = os.expanduser("~") + "/.local/share/Mindustry/";
+            elif platform == "win32":
+                self.logger.debug("Detected windows")
+                dir = os.getenv("AppData") + "/Mindustry"
+        self.logger.info("Got dir: " + dir)
         return dir
 
     def save_settings(self):
