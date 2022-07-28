@@ -6,7 +6,6 @@ import easygui
 from imgui.integrations.glfw import GlfwRenderer
 from components.util import LogLevel, Logger
 from settings import Settings
-import time
 
 from components.launcher import Launcher
 from components.installer import Installer
@@ -129,11 +128,12 @@ if __name__ == "__main__":
 [x] Enter github access token
 [x] Enter root directory
 [x] Automatically refresh on source change
-[ ] Test on windows
+[x] Test on windows
 [ ] Test on linux
 [x] Start without console
 [x] Close launcher on game launch setting
 [x] Game running warning
+[ ] Save settings.properties | latest.log | imgui.ini to appdata or linux eq.
 
 Later
 [ ] External mod manager
@@ -141,11 +141,7 @@ Later
 [ ] Access token per source?
 [ ] Reenter token in launcher
 [ ] Token instructions
-"""
 
-
-
-"""
 TODO Windows exe
 
 TODO Linux exe

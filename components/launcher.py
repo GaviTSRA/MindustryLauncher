@@ -1,3 +1,4 @@
+from sys import platform
 import imgui
 import easygui
 import os
@@ -97,7 +98,14 @@ class Launcher:
                 res = subprocess.call(["java", "-jar", f"{self.parent.ROOT}/profiles/{self.profiles[self.profile]}"], env=env)
             else:
                 self.logger.debug("Launching")
-                res = subprocess.call(self.parent.ROOT+"/Mindustry.exe", env=env)
+                if platform == "linux" or platform == "linux2":
+                    res = subprocess.call(self.parent.ROOT+"/Mindustry", env=env)
+                elif platform == "win32":
+                    res = subprocess.call(self.parent.ROOT+"/Mindustry.exe", env=env)
+                else:
+                    self.logger.error("Invalid os or could not get os info")
+                    raise AssertionError("Invalid os")
+
             if res != 0:
                 self.logger.info("Opening crash menu")
                 res = easygui.buttonbox("Mindustry has crashed. If it didn't even open, try running it using Java.", "Ohno", ("Relaunch", "Relaunch (Java)", "Open launcher", "Close"))
