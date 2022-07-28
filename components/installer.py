@@ -87,7 +87,7 @@ class Installer:
     def install(self, tag, download_url, file_size):
         self.logger.info(f"Installing tag {tag} from url {download_url} with a filesize of {file_size}")
         try:
-            for update in self.save_file(download_url, f"{self.parent.ROOT}/profiles/{tag}.jar", file_size, self.token):
+            for update in self.save_file(download_url, f"{self.parent.ROOT}/profiles/{tag}.jar", file_size, self.tokens[self.install_source]):
                 self.download_progress = update
             self.parent.launcher.load_profiles()
         except Exception as err:
