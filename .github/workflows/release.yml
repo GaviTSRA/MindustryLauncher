@@ -9,7 +9,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        os: [macos-latest, ubuntu-latest, windows-latest]
+        os: [ubuntu-latest, windows-latest]
       
     runs-on: ${{ matrix.os }}  
     continue-on-error: true
@@ -70,11 +70,6 @@ jobs:
           name: Linux Build
           path: builds/linux-build
 
-      - uses: actions/download-artifact@v3
-        with:
-          name: macOs Build
-          path: builds/mac-build
-
       - name: Create Release
         id: create_release
         uses: actions/create-release@v1
@@ -108,14 +103,4 @@ jobs:
           upload_url: ${{ steps.create_release.outputs.upload_url }}
           asset_path: builds/linux-build
           asset_name: MindustryLauncher Linux
-          asset_content_type: application/zip
-
-      - name: Upload Release Asset
-        uses: actions/upload-release-asset@v1
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        with:
-          upload_url: ${{ steps.create_release.outputs.upload_url }}
-          asset_path: builds/mac-build
-          asset_name: MindustryLauncher MacOS
           asset_content_type: application/zip
