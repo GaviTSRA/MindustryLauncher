@@ -111,34 +111,34 @@ if __name__ == "__main__":
 
 
 """
-[x] Launching the game
-[x] Launching old versions using java
-[x] Select from multiple installed versions
-[x] Automatically setup all directories
-[x] Installing new version from different sources
-[x] Don't show installer if not connected to the internet
-[x] Don't show launcher if no versions are available
-[x] Save configuration to config file
-[x] Relaunch window
-[x] Delete profiles
-[x] Multiple save directories
-[x] Save directory (partial) backups
-[x] Manually add new sources
+✔ Launching the game
+✔ Launching old versions using java
+✔ Select from multiple installed versions
+✔ Automatically setup all directories
+✔ Installing new version from different sources
+✔ Don't show installer if not connected to the internet
+✔ Don't show launcher if no versions are available
+✔ Save configuration to config file
+✔ Relaunch window
+✔ Delete profiles
+✔ Multiple save directories
+✔ Save directory (partial) backups
+✔ Manually add new sources
 [ ] Load backups
-[x] Enter github access token
-[x] Enter root directory
-[x] Automatically refresh on source change
-[x] Test on windows
+✔ Enter github access token
+✔ Enter root directory
+✔ Automatically refresh on source change
+✔ Test on windows
 [ ] Test on linux
-[x] Start without console
-[x] Close launcher on game launch setting
-[x] Game running warning
+✔ Start without console
+✔ Close launcher on game launch setting
+✔ Game running warning
 [ ] Save settings.properties | latest.log | imgui.ini to appdata or linux eq.
+✔ Access token per source?
 
 Later
 [ ] External mod manager
 [ ] External mod installer
-[ ] Access token per source?
 [ ] Reenter token in launcher
 [ ] Token instructions
 
