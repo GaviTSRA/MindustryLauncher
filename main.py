@@ -121,13 +121,13 @@ if __name__ == "__main__":
 [✔ ✔] Relaunch window
 [✔ ✔] Delete profiles
 [✔ ✔] Close launcher on game launch setting
-[✔ ? ] Game running warning
+[✔ ✔] Game running warning
 
 <=> Installer
 [✔ ✔] Installing new version from different sources
-[✔ ? ] Don't show installer if not connected to the internet
-[✔ ? ] Manually add new sources (if needed for source => private repo)
-[✔ ? ] Enter github access token per source
+[✔ ✔] Don't show installer if not connected to the internet
+[✔ ✔] Manually add new sources
+[✔ ✔] Enter github access token per source (if needed for source => private repo)
 [✔ ✔] Automatically refresh on source change
 
 <=> Data Manager
@@ -150,3 +150,5 @@ External mod installer
 Reenter token in launcher
 Token instructions
 """
+
+#TODO installer: reload on invalid source

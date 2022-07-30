@@ -98,7 +98,7 @@ jobs:
           upload_url: ${{ steps.create_release.outputs.upload_url }}
           asset_path: main.exe
           asset_name: MindustryLauncher Windows.exe
-          asset_content_type: application/zip
+          asset_content_type: application/x-msdownload
 
       - name: Upload Release Asset
         uses: actions/upload-release-asset@v1
@@ -108,4 +108,4 @@ jobs:
           upload_url: ${{ steps.create_release.outputs.upload_url }}
           asset_path: main.bin
           asset_name: MindustryLauncher Linux.bin
-          asset_content_type: application/zip
+          asset_content_type: application/x-elf
