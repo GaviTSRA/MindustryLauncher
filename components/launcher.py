@@ -68,7 +68,7 @@ class Launcher:
             raise err
 
     def load_profile(self, name):
-        self.logger.info("Loading profile " + name)
+        self.logger.info(f"Loading profile {name}")
         try:
             with open(self.parent.ROOT+"/config.json", "w") as fi:
                 fi.write('{"classPath": ["profiles/'+name+'"],"mainClass": "mindustry.desktop.DesktopLauncher"}')
@@ -88,7 +88,7 @@ class Launcher:
                 env["MINDUSTRY_DATA_DIR"] = self.parent.data_manager.get_save_dir()
 
             self.logger.debug("Checking for processes")
-            if "Mindustry.exe" in (p.name() for p in psutil.process_iter()):
+            if "Mindustry.exe" in (p.name() for p in psutil.process_iter()) or "Mindustry" in (p.name() for p in psutil.process_iter()) or "Mindustry.bin" in (p.name() for p in psutil.process_iter()):
                 if not easygui.ynbox("Mindustry is already running.", "Game already running", ("Start anyway", "Cancel"), default_choice="Cancel", cancel_choice="Cancel"):
                     self.parent.is_open = True
                     return 

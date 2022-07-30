@@ -9,7 +9,6 @@ from components.util import LogLevel, Logger
 
 from settings import Settings
 
-#TODO logging
 class DataManager:
     logger = Logger("DataManager", LogLevel.DEBUG, "latest.log")
     logger.info("Loading settings")
@@ -27,6 +26,8 @@ class DataManager:
         self.parent = parent
         self.save_dir = self.get_save_dir()
         self.logger.info("Done")
+        if not os.path.exists("backups"):
+            os.mkdir("backups")
 
     def render(self):
         imgui.begin("Data manager")
@@ -119,7 +120,7 @@ class DataManager:
                 elif platform == "win32":
                     self.logger.debug("Detected windows")
                     dir = os.getenv("AppData") + "/Mindustry"
-            self.logger.info("Got dir: " + dir)
+            self.logger.info(f"Got dir: {dir}")
             return dir
         except Exception as err:
             self.logger.error("Error getting save dir: " + str(err))

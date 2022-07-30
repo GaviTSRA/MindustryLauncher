@@ -1,15 +1,17 @@
-import http.client as httplib
-from time import time
+import socket
 
-def internet_available():
-    conn = httplib.HTTPSConnection("8.8.8.8", timeout=5)
+def internet_available(host="8.8.8.8", port=53, timeout=3):
+    """
+    Host: 8.8.8.8 (google-public-dns-a.google.com)
+    OpenPort: 53/tcp
+    Service: domain (DNS/TCP)
+    """
     try:
-        conn.request("HEAD", "/")
+        socket.setdefaulttimeout(timeout)
+        socket.socket(socket.AF_INET, socket.SOCK_STREAM).connect((host, port))
         return True
-    except Exception:
+    except socket.error as ex:
         return False
-    finally:
-        conn.close()
 
 class LogLevel:
     DEBUG = (0, "Debug")

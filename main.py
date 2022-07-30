@@ -111,39 +111,42 @@ if __name__ == "__main__":
 
 
 """
-✔ Launching the game
-✔ Launching old versions using java
-✔ Select from multiple installed versions
-✔ Automatically setup all directories
-✔ Installing new version from different sources
-✔ Don't show installer if not connected to the internet
-✔ Don't show launcher if no versions are available
-✔ Save configuration to config file
-✔ Relaunch window
-✔ Delete profiles
-✔ Multiple save directories
-✔ Save directory (partial) backups
-✔ Manually add new sources
-[ ] Load backups
-✔ Enter github access token
-✔ Enter root directory
-✔ Automatically refresh on source change
-✔ Test on windows
-[ ] Test on linux
-✔ Start without console
-✔ Close launcher on game launch setting
-✔ Game running warning
-[ ] Save settings.properties | latest.log | imgui.ini to appdata or linux eq.
-✔ Access token per source?
+[Windows, Linux]
 
-Later
-[ ] External mod manager
-[ ] External mod installer
-[ ] Reenter token in launcher
-[ ] Token instructions
+<=> Launcher
+[✔ ✔] Launching the game
+[✔ ✔] Launching old versions using java
+[✔ ✔] Select from multiple installed versions
+[✔ ✔] Don't show launcher if no versions are available
+[✔ ✔] Relaunch window
+[✔ ✔] Delete profiles
+[✔ ✔] Close launcher on game launch setting
+[✔ ? ] Game running warning
 
-TODO Windows exe
+<=> Installer
+[✔ ✔] Installing new version from different sources
+[✔ ? ] Don't show installer if not connected to the internet
+[✔ ? ] Manually add new sources (if needed for source => private repo)
+[✔ ? ] Enter github access token per source
+[✔ ✔] Automatically refresh on source change
 
-TODO Linux exe
-- Make executable
+<=> Data Manager
+[✔ ✔] Multiple save directories
+[✔ ✔] Save directory (partial) backups
+[✔ ✔] Default save dir
+[✖ ✖] Load backups
+
+<=> Other
+[✔ ✔] Automatically setup all directories
+[✔ ✔] Save configuration to config file
+[✔ ✔] Enter root directory
+[✔ ✔] Start without console
+[✖ ✖] Save settings.properties | latest.log | imgui.ini to appdata or linux eq.
+[✔ ✖] Make executable file (linux: chmod +x)
+
+<=> Future
+External mod manager
+External mod installer
+Reenter token in launcher
+Token instructions
 """

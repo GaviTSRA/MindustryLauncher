@@ -71,6 +71,10 @@ jobs:
           name: Linux Build
           path: .
 
+      - name: Make executable (Linux)
+        run: |
+          chmod +x MindustryLauncher Linux.bin
+
       - name: Create Release
         id: create_release
         uses: actions/create-release@v1

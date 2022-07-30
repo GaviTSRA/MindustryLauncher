@@ -35,7 +35,7 @@ class Installer:
             imgui.text("New source")
             _, self.new_source = imgui.input_text("New source", self.new_source, 255)
             if imgui.button("Add source"):
-                self.logger.info("Adding source " + self.new_source)
+                self.logger.info(f"Adding source {self.new_source}")
                 self.sources.append(self.new_source)
                 self.install_source = len(self.sources) - 1
                 self.tokens.append("None")
@@ -81,7 +81,7 @@ class Installer:
                 self.internet = internet_available()
                 if self.internet:
                     self.load_installer()
-                self.logger.debug("Internet: " + self.internet)
+                self.logger.debug(f"Internet: {self.internet}")
         imgui.end()
 
     def install(self, tag, download_url, file_size):
